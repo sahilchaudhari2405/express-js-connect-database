@@ -1,5 +1,23 @@
 const express = require('express');
-
+const app = express();
+const {Client} = require("pg");
+const client = new Client({
+    host: "localhost",
+    user: "postgres",
+    port: 5432,
+    password: "sahil",
+    database: "signup"
+})
+client.connect();
+client.query(`select * from studentdata`, (err,result) => {
+     if(!err)
+     {
+        console.log(result.rows);
+     }
+     else{
+        console.log(err)
+     }
+})
 const PORT = 3000;
 const  bodyparser = require("body-parser");
 const { Client } = require('pg');
