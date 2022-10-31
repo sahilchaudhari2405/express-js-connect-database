@@ -9,7 +9,7 @@ const client = new Client({
     database: "signup"
 })
 client.connect();
-client.query(`select * from studentdata`, (err,result) => {
+client.query(`INSERT INTO studentdata(studentid,firstname,lastname,email,password) value()`, (err,result) => {
      if(!err)
      {
         console.log(result.rows);
@@ -20,7 +20,6 @@ client.query(`select * from studentdata`, (err,result) => {
 })
 const PORT = 3000;
 const  bodyparser = require("body-parser");
-const { Client } = require('pg');
 app.use(bodyparser.urlencoded({extended:true}));
 app.use(express.static('public'));
 app.get('/', (req, res) => {
@@ -31,6 +30,16 @@ app.post('signup',(req,res) => {
     var lastnm = req.body.lastnm;
     var email = req.body.email;
     var password = req.body.pass; 
+//     client.query(`INSERT INTO studentdata(studentid,firstname,lastname,email,password) value()`, (err,result) => {
+//         if(!err)
+//         {
+//            console.log(result.rows);
+//         }
+//         else{
+//            console.log(err)
+//         }
+//    })
+console.log(firstnm);
 })
 
 app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`));
