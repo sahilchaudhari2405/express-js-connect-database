@@ -25,14 +25,15 @@ app.use(express.static('public'));
 app.get('/', (req, res) => {
     res.sendFile(__dirname+"/public/index.html");
 }); 
+// console.log(__dirname+"/public/component/login.html");
 app.post('/signup',(req,res) => {
     var firstnm = req.body.firstnm;
     var lastnm = req.body.lastnm;
     var email = req.body.email;
     var password = req.body.pass; 
-    client.query("INSERT INTO studentdata(firstname, lastname, email, password) value($1,$2,$3,$4)", [firstnm,lastnm,email,password]).then(data => {
+    client.query('INSERT INTO studentdata(firstname, lastname, email, password) VALUE($1,$2,$3,$4)', [firstnm,lastnm,email,password]).then(data => {
         res.send(data);});
-        res.send(firstnm);
+        res.sendFile(__dirname+"/public/component/login.html");
 })
 
 app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`));
